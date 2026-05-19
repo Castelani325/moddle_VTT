@@ -1,0 +1,22 @@
+services:
+  moodle:
+    build: .
+    container_name: moodle_vtt
+    restart: unless-stopped
+    ports:
+      - "8095:80"
+    volumes:
+      - moodledata:/var/moodledata
+    environment:
+      MOODLE_DB_HOST: ${MOODLE_DB_HOST}
+      MOODLE_DB_PORT: ${MOODLE_DB_PORT:-1433}
+      MOODLE_DB_NAME: ${MOODLE_DB_NAME}
+      MOODLE_DB_USER: ${MOODLE_DB_USER}
+      MOODLE_DB_PASS: ${MOODLE_DB_PASS}
+      MOODLE_WWWROOT: ${MOODLE_WWWROOT}
+    env_file:
+      - .env
+
+volumes:
+  moodledata:
+    driver: local
