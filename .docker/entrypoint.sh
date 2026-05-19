@@ -20,6 +20,10 @@ global \$CFG;
 \$CFG->dboptions = [
     'dbpersist' => false,
     'dbport'    => '${MOODLE_DB_PORT:-1433}',
+    'extrainfo' => [
+        'TrustServerCertificate' => true,
+        'Encrypt'                => false,
+    ],
 ];
 
 \$CFG->wwwroot  = '${MOODLE_WWWROOT}';
